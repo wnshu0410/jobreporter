@@ -1,4 +1,4 @@
-module github.com/user/jobreporter
+module github.com/wnshu0410/jobreporter
 
 go 1.20
 
