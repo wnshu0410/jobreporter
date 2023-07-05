@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "lib",
+    srcs = ["main.go"],
+    importpath = "",
+    visibility = ["//visibility:private"],
+    deps = ["@org_uber_go_zap//:go_default_library"],
+)
+
+go_binary(
+    name = "jobreporter",
+    embed = [":jobreporter_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "jobreporter_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/wnshu0410/jobreporter/cmd/jobreporter",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//internal/log",
+        "@org_uber_go_zap//:go_default_library",
+    ],
+)
